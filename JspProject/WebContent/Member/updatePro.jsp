@@ -1,0 +1,35 @@
+<%@page import="db.DBconn"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import="java.sql.*"%>
+<%
+DBconn.open();
+
+	String sql = "update member set id=?, pwd=?, name=?, phone=?, where email=?";
+	PreparedStatement prst = DBconn.updateQuery(sql);
+	prst.setString(1, request.getParameter("id"));
+	prst.setString(2, request.getParameter("pwd"));
+	prst.setString(3, request.getParameter("name"));
+	prst.setString(4, request.getParameter("phone"));
+	prst.setString(5, request.getParameter("email"));
+
+	int i = prst.executeUpdate();
+
+	prst.close();
+	DBconn.close();
+	
+%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h2>DB에 로그인 데이터 변경</h2>
+	
+</body>
+</html>

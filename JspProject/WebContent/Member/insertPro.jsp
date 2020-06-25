@@ -1,3 +1,4 @@
+<%@page import="db.DBconn"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.naming.Context"%>
@@ -8,23 +9,21 @@
 <%
    	request.setCharacterEncoding("utf-8");
 
-    Context initCtx = new InitialContext();
-    Context envCtx = (Context) initCtx.lookup("java:comp/env");
-    DataSource ds = (DataSource) envCtx.lookup("jdbc/dit");
-    
-    Connection con = ds.getConnection();
+		DBconn.open();
 	
-		String sql = "INSERT INTO member VALUES(?, ?, ?)";
-		PreparedStatement pst = con.prepareStatement(sql);
-		pst.setString(1, request.getParameter("id"));
-		pst.setString(2, request.getParameter("name"));
-		pst.setString(3, request.getParameter("pwd"));
+		String sql = "INSERT INTO member VALUES(?, ?, ?, ?, ?)";
+		PreparedStatement prst = DBconn.updateQuery(sql);
+		prst.setString(1, request.getParameter("id"));
+		prst.setString(2, request.getParameter("pwd"));
+		prst.setString(3, request.getParameter("name"));
+		prst.setString(4, request.getParameter("phone"));
+		prst.setString(5, request.getParameter("email"));
 	
-		int i = pst.executeUpdate();
+		int i = prst.executeUpdate();
 
-		pst.close();
-		con.close();
-	
+		prst.close();
+		DBconn.close();
+		
 		response.sendRedirect("list.jsp");
 %>
 <!DOCTYPE html>

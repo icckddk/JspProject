@@ -1,3 +1,4 @@
+<%@page import="db.DBconn"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="javax.sql.DataSource"%>
@@ -8,25 +9,19 @@
 <%@page import="java.sql.Connection"%><%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    Context initCtx = new InitialContext();
-    
-    Context envCtx = (Context) initCtx.lookup("java:comp/env");
-    
-    DataSource ds = (DataSource) envCtx.lookup("jdbc/dit");
-    
-    Connection con = ds.getConnection();
+    DBconn.open();
     
     String sql = "delete from member where id=?";
     
-    PreparedStatement pst = con.prepareStatement(sql);
-		pst.setString(1, request.getParameter("id"));
-	
-		int i = pst.executeUpdate();
+    PreparedStatement prst = DBconn.updateQuery(sql);
+    prst.setString(1, request.getParameter("id"));
+    prst.executeUpdate();
     
-		pst.close();
-		con.close();
-		
-		response.sendRedirect("list.jsp");
+    DBconn.close();
+    
+    response.sendRedirect("list.jsp");
+    
+    
     %>
 <!DOCTYPE html>
 <html>
