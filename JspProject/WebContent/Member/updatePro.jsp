@@ -6,9 +6,9 @@
     pageEncoding="UTF-8"
     import="java.sql.*"%>
 <%
-DBconn.open();
+	DBconn.open();
 
-	String sql = "update member set id=?, pwd=?, name=?, phone=?, where email=?";
+	String sql = "update member set id=?, pwd=?, name=?, phone=? where email=?";
 	PreparedStatement prst = DBconn.updateQuery(sql);
 	prst.setString(1, request.getParameter("id"));
 	prst.setString(2, request.getParameter("pwd"));
@@ -20,6 +20,8 @@ DBconn.open();
 
 	prst.close();
 	DBconn.close();
+	
+	response.sendRedirect("list.jsp");
 	
 %>
 <!DOCTYPE html>

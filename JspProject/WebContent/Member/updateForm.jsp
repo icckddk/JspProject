@@ -20,7 +20,7 @@
 		이름:<input type="text" name="name"><br>
 		휴대폰번호:<input type="text" name="phone"><br>
 		이메일:<input type="text" name="email"><br>
-		<input type="submit" value="변경" onclick="location.href='list.jsp?id=<%=id %>'">
+		<input type="submit" value="변경">
 		<input type="button" value="삭제" onclick="location.href='delete.jsp?id=<%=id %>'">
 		<input type="reset" value="재설정">
 	</form>
