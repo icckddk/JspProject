@@ -1,9 +1,5 @@
 <%@page import="db.DBconn"%>
-<%@page import="javax.sql.DataSource"%>
-<%@page import="javax.naming.InitialContext"%>
-<%@page import="javax.naming.Context"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

@@ -1,11 +1,9 @@
 <%@page import="db.DBconn"%>
-<%@page import="javax.sql.DataSource"%>
-<%@page import="javax.naming.InitialContext"%>
-<%@page import="javax.naming.Context"%>
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%
+ 		request.setCharacterEncoding("utf-8");
  		DBconn.open();
     
     String sql = "SELECT * FROM member";
@@ -46,8 +44,8 @@
 %>
 		<tr>
 			<td><%= id %></td>
-			<td><%= name %></td>
 			<td><%= pwd %></td>
+			<td><%= name %></td>
 			<td><%= phone %></td>
 			<td><%= email %></td>
 			<td><a href="delete.jsp?id=<%=id%>" >삭제</a></td>
