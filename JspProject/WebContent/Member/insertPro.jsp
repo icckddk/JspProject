@@ -20,7 +20,7 @@
 		prst.close();
 		DBconn.close();
 		
-		response.sendRedirect("list.jsp");
+		response.sendRedirect("LoginForm.jsp");
 %>
 <!DOCTYPE html>
 <html>
